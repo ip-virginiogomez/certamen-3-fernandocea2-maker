@@ -1,0 +1,14 @@
+# --- problema 1: control de velocidades en las autopistas ---
+
+# 1. inicializacion de lista para guardar velocidades
+ velocidades = []
+
+# 2.. solicitar de 5 velocidades al usuario 
+print ("registro de velocidades:") 
+for i in range (5) :
+vel = float(imput (f "ingrese las velocidades del vehiculo {i+1} (en km/h)"))
+velocidades: apprend(vel)
+
+# 3. calculos: promedio y velocidad maxima
+# nota: sum () y max() son funciones integradas permitidas
+promedio = 
