@@ -1,0 +1,57 @@
+# =============================================================================
+# Problema 3: Sistema de Descuento en Supermercado
+# Este programa determina si un cliente accede a un 15% de descuento
+# basado en su edad, pertenencia al programa de socios y monto de compra.
+# =============================================================================
+
+def calcular_descuento():
+    print("--- Bienvenido al sistema de descuentos ---")
+    
+    # Bloque de captura de datos con validaciones básicas
+    try:
+        edad = int(input("Ingrese su edad: "))
+        
+        # Normalizamos la entrada a minúsculas para evitar errores de escritura
+        tarjeta_input = input("¿Tiene tarjeta de socio? (si/no): ").strip().lower()
+        tiene_tarjeta = (tarjeta_input == "si")
+        
+        monto_compra = float(input("Ingrese el monto total de su compra: $"))
+        
+        if monto_compra < 0:
+            print("Error: El monto de la compra no puede ser negativo.")
+            return
+
+    except ValueError:
+        print("Error: Por favor, ingrese valores numéricos válidos para la edad y el monto.")
+        return
+
+    # Definición de constantes para el negocio
+    UMBRAL_MONTO = 10000
+    PORCENTAJE_DESCUENTO = 0.15
+    EDAD_MINIMA = 60
+
+    # Lógica de evaluación de condiciones
+    # El descuento aplica si: 
+    # 1. El monto supera los 10.000 
+    # 2. Y (es mayor de 60 años O tiene tarjeta de socio)
+    cumple_monto = monto_compra > UMBRAL_MONTO
+    cumple_perfil = (edad > EDAD_MINIMA) or tiene_tarjeta
+
+    print("\n--- Procesando resultados ---")
+    
+    if cumple_monto and cumple_perfil:
+        descuento = monto_compra * PORCENTAJE_DESCUENTO
+        monto_final = monto_compra - descuento
+        
+        print("¡Estado: Califica para el descuento!")
+        print(f"Monto original:   ${monto_compra:,.0f}")
+        print(f"Descuento (15%): -${descuento:,.0f}")
+        print(f"Monto a pagar:    ${monto_final:,.0f}")
+    else:
+        print("Estado: No califica para el descuento.")
+        print(f"Motivo: No cumple con las condiciones requeridas (monto > $10.000 y ser socio/mayor de 60).")
+        print(f"Total a pagar:    ${monto_compra:,.0f}")
+
+# Ejecución del programa
+if __name__ == "__main__":
+    calcular_descuento()

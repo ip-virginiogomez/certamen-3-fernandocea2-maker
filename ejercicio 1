@@ -11,4 +11,20 @@ velocidades: apprend(vel)
 
 # 3. calculos: promedio y velocidad maxima
 # nota: sum () y max() son funciones integradas permitidas
-promedio = 
+promedio = sum(velocidades) / len(velocidades)
+maxima = max(velocidades)
+
+print(f"\nPromedio de velocidades: {promedio:.2f} km/h")
+print(f"Velocidad máxima registrada: {maxima} km/h")
+
+# 4. Verificar si todas están dentro del límite permitido (60 a 120 km/h)
+dentro_limite = all(60 <= v <= 120 for v in velocidades)
+if dentro_limite:
+    print("Todas las velocidades están dentro del límite permitido (60-120 km/h).")
+else:
+    print("Hay velocidades fuera del rango permitido (60-120 km/h).")
+
+# 5. Si alguna supera 140 km/h o es menor a 20 km/h, mostrar advertencia
+for v in velocidades:
+    if v > 140 or v < 20:
+        print(f"¡ADVERTENCIA DE PELIGRO! Se detectó una velocidad de {v} km/h.")
